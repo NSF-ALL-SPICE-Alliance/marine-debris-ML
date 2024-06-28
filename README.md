@@ -8,6 +8,16 @@
 Student stipends for this work were funded by the Pacific Intelligence Innovation Initiative ([P3I](https://hawaiip3i.org/))
 
 
+
+## Overview 
+
+This work took place during June 2024 during the SPICE Summer Data Science Institute. With inspiration from [NASA-IMPACT](https://github.com/NASA-IMPACT/marine_debris_ML) we became very interested in mapping plastic debris in the ocean of the **Windward side of Oahu, Hawaii.** This interest lead us to the paper *Automatic Detection and Identification of Floating Marine Debris Using Multispectral Satellite Imagery* and it's [github repo](https://github.com/miguelmendesduarte/Floating-Marine-Debris-Data). This amazing work contains data to train a model to detect plastic using Sentinel2. We trained a decision tree model (opposed to xgboost utilized in the paper) and achieved a similiar accuracy score of __%. 
+
+From there, we downloaded Sentinel 2 data for a bounding box off the Windward Coast of Oahu from the [Copernicus Open Access Hub](https://dataspace.copernicus.eu/). We downloaded data for Bands 1-8, 11 & 12. This data was processed utilizing the Texas Advanced Computing Center ([TACC](https://tacc.utexas.edu/)); the workflow can be found in Sentinel-Query1.ipynb. 
+
+Lastly we utilized our trained model to make predictions on the processed data. The predictions were mapped utilizing the [geemap](https://geemap.org/) Python package
+
+
 #### Students 
 
 [Wilneris Colon ](https://github.com/wcarri)
@@ -18,13 +28,6 @@ Student stipends for this work were funded by the Pacific Intelligence Innovatio
 
 [Connor Flynn](https://github.com/ConnorFlynn)
 
-## Overview 
-
-This work took place during June 2024 during the SPICE Summer Data Science Institute. With inspiration from [NASA-IMPACT](https://github.com/NASA-IMPACT/marine_debris_ML) we became very interested in mapping plastic debris in the ocean of the **Windward side of Oahu, Hawaii.** This interest lead us to the paper *Automatic Detection and Identification of Floating Marine Debris Using Multispectral Satellite Imagery* and it's [github repo](https://github.com/miguelmendesduarte/Floating-Marine-Debris-Data). This amazing work contains data to train a model to detect plastic using Sentinel2. We trained a decision tree model (opposed to xgboost utilized in the paper) and achieved a similiar accuracy score of __%. 
-
-From there, we downloaded Sentinel 2 data for a bounding box off the Windward Coast of Oahu from the [Copernicus Open Access Hub](https://dataspace.copernicus.eu/). We downloaded data for Bands 1-8, 11 & 12. This data was processed utilizing the Texas Advanced Computing Center ([TACC](https://tacc.utexas.edu/)); the workflow can be found in Sentinel-Query1.ipynb. 
-
-Lastly we utilized our trained model to make predictions on the processed data. The predictions were mapped utilizing the [geemap](https://geemap.org/) Python package,
 
 
 
