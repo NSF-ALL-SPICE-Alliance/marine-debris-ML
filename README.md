@@ -10,7 +10,7 @@ Student stipends for this work were funded by the Pacific Intelligence Innovatio
 
 #### Students 
 
-[Wilneris Carrion-Colon ](https://github.com/wcarri)
+[Wilneris Colon ](https://github.com/wcarri)
 
 [Johnny Bae](https://github.com/9un-Bae)
 
