@@ -18,6 +18,16 @@ From there, we downloaded Sentinel 2 data for a bounding box off the Windward Co
 Lastly we utilized our trained model to make predictions on the processed data. The predictions were mapped utilizing the [geemap](https://geemap.org/) Python package
 
 
+## Student Videos
+
+
+
+https://github.com/NSF-ALL-SPICE-Alliance/marine-debris-ML/assets/76076246/55151e77-0dcb-48a4-88af-797564712fcd
+
+
+
+
+
 #### Students 
 
 [Wilneris Colon ](https://github.com/wcarri)
