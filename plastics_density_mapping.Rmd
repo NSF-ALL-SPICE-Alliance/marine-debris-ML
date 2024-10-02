@@ -1,0 +1,82 @@
+---
+title: "Mapping Platic Density"
+author: "Connor Flynn"
+date: "7/25/2024"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(tigris)
+library(dplyr)
+library(sf)
+library(tmap)
+```
+
+
+```{r}
+plastics <- read_csv(here("Plastic.csv"))
+```
+
+
+
+
+
+```{r}
+plastics_sf <- plastics %<>% 
+  st_as_sf(coords = c("longitude", "latitude")) %>% 
+  st_sf(crs = 4326)
+```
+
+
+
+
+```{r}
+
+
+# Load the state of Hawaii
+hi_state <- states(cb = TRUE, resolution = "500k", year = 2022) %>%
+  filter(STUSPS == "HI")
+
+# Load the counties in Hawaii
+hi_counties <- counties(state = "HI", cb = TRUE, resolution = "500k", year = 2022)
+
+# Filter for Oahu (Honolulu County)
+oahu <- hi_counties %>% 
+  filter(NAME == "Honolulu") %>% 
+  st_transform(crs = st_crs(hi_state))
+
+# Transform plastics_sf to match the CRS of oahu
+plastics_sf <- plastics_sf %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  st_transform(crs = st_crs(oahu))
+
+# Define the bounding box for the hexbin grid based on the points' extents
+bbox <- st_bbox(plastics_sf)
+
+# Create a hexbin grid within the bounding box
+hex_grid <- st_make_grid(plastics_sf, cellsize = 0.005, what = "polygons", square = FALSE)
+
+# Convert the grid to an sf object
+hex_grid <- st_sf(geometry = hex_grid)
+
+# Count the number of points within each hexbin
+hex_grid$count <- lengths(st_intersects(hex_grid, plastics_sf))
+
+# Filter out empty hexbins
+hex_grid <- hex_grid %>% filter(count > 0)
+
+# Use tmap to visualize
+tmap_mode("view")
+
+tm_shape(oahu) +
+  tm_borders(lwd = 2, col = "blue") +
+  tm_shape(hex_grid) +
+  tm_polygons(col = "count", palette = "YlOrRd", alpha = 0.7) +
+  tm_layout(main.title = "Oahu Plastic Detection Density", main.title.size = 1.5)
+
+
+```
+
